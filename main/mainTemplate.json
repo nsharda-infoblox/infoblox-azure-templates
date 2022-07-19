@@ -374,7 +374,7 @@
 
     "dataDiskName": "[concat(parameters('vmName'),'-datadisk1')]",
     "dataDiskNewOrNone": "[[if(contains(parameters('niosModel'), 'IB-V2225'), 'new', 'none']",
-    "dataDiskSetupURL":"[concat(parameters('artifactsBaseUrl'),'/data-disk-',variables('dataDiskNewOrNone'),'.json')]",
+    "dataDiskSetupURL":"[concat(parameters('artifactsBaseUrl'),'data-disk-',variables('dataDiskNewOrNone'),'.json')]",
     "dataDiskArray": [
                 {
                   "lun": 0,
