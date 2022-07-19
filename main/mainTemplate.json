@@ -36,8 +36,7 @@
         "Standard_DS3_v2",
         "Standard_DS11_v2",
         "Standard_DS12_v2",
-        "Standard_DS13_v2",
-        "Standard_DS14_v2"
+        "Standard_DS13_v2"
       ]
     },
     "niosModel":{
@@ -50,9 +49,6 @@
         "IB-V825",
         "IB-V1425",
         "IB-V2225",
-        "IB-V4015",
-        "IB-V4025",
-        "IB-V5005",
         "cp-v805",
         "cp-v1405",
         "cp-v2205"
@@ -66,7 +62,7 @@
       },
       "allowedValues":[
         "latest",
-        "862.49947.0"
+        "853.417434.0"
       ]
     },
     "adminPassword":{
@@ -190,7 +186,7 @@
     },
     "vmDataDiskSize": {
       "type":"int",
-      "defaultValue": "",
+      "defaultValue": 250,
       "metadata": {
         "description":"Data Disk for VM for storage"
       }
@@ -271,7 +267,7 @@
   },
   "variables":{
     "imagePublisher":"infoblox",
-    "imageOffer":"infoblox-vm-appliances-862",
+    "imageOffer":"infoblox-vm-appliances-853",
     "imageSKU": "[if(contains(parameters('niosModel'), 'IB-V'), variables('imageSKUSoT-true'), variables('imageSKUSoT-false'))]",
     "imageSKUSoT-true": "vsot",
     "imageSKUSoT-false": "[parameters('niosModel')]",
@@ -377,7 +373,7 @@
     },
 
     "dataDiskName": "[concat(parameters('vmName'),'-datadisk1')]",
-    "dataDiskNewOrNone": "[[if(contains(parameters('niosModel'), 'IB-V5005'), 'new', 'none']",
+    "dataDiskNewOrNone": "[[if(contains(parameters('niosModel'), 'IB-V2225'), 'new', 'none']",
     "dataDiskSetupURL":"[concat(parameters('artifactsBaseUrl'),'/data-disk-',variables('dataDiskNewOrNone'),'.json')]",
     "dataDiskArray": [
                 {
@@ -692,7 +688,8 @@
         "[resourceId('Microsoft.Resources/deployments/', 'SettingUpStorageAccountForLogs')]",
         "[resourceId('Microsoft.Resources/deployments/', 'SettingUpPrimaryNic')]",
         "[resourceId('Microsoft.Resources/deployments/', 'SettingUpSecondaryNic')]",
-        "[resourceId('Microsoft.Resources/deployments/', 'SettingUpAvailabilitySet')]"
+        "[resourceId('Microsoft.Resources/deployments/', 'SettingUpAvailabilitySet')]",
+        "[resourceId('Microsoft.Resources/deployments', 'SettingUpDataDisk')]"
       ],
       "properties":{
         "mode":"Incremental",
