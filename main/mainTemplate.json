@@ -379,7 +379,7 @@
                 {
                   "lun": 0,
                   "createOption": "attach",
-                  "managedisk": {
+                  "managedDisk": {
                     "id": "[resourceId('Microsoft.Compute/disks', variables('dataDiskName'))]"
                   }
                 }
@@ -662,7 +662,7 @@
             "value": "[variables('dataDiskName')]"
           },
           "vmDataDiskSize": {
-            "value": "[parameters('vmDataDiskSize')]"
+            "value": "[int(parameters('vmDataDiskSize'))]"
           }
         }
       }
