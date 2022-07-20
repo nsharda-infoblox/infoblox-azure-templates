@@ -184,6 +184,17 @@
         "description":"Resource Group containing existing storage account for boot diagnostics"
       }
     },
+    "vmDataDiskType": {
+      "type": "string",
+      "defaultValue": "Standard_LRS",
+      "allowedValues": [
+        "Standard_LRS",
+        "Premium_LRS"
+      ],
+      "metadata": {
+        "description": "Data Disk Type for VM storage"
+      }
+    },
     "vmDataDiskSize": {
       "type":"int",
       "defaultValue": 250,
@@ -660,6 +671,9 @@
           },
           "dataDiskName": {
             "value": "[variables('dataDiskName')]"
+          },
+          "vmDataDiskType": {
+            "value": "[parameters('vmDataDiskType')]"
           },
           "vmDataDiskSize": {
             "value": "[int(parameters('vmDataDiskSize'))]"

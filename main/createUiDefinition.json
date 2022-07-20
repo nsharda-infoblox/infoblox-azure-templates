@@ -280,16 +280,40 @@
           "osPlatform": "Linux"
         },
         {
-          "name": "vmDataDiskSize",
-          "type": "Microsoft.Common.TextBox",
-          "label": "Data size for TE-V2225",
-          "toolTip": "Select the size of Data Disk for TE-V2225. Minimum allowed size is 250GB",
+          "name": "vmDataDiskType",
+          "type": "Microsoft.Common.DropDown",
+          "label": "Data Disk Type for TE-V2225",
+          "placeholder": "",
+          "defaultValue": "Standard LRS",
+          "toolTip": "Select the data disk type for IB-V2225",
           "constraints": {
-            "required": true,
-            "regex": "^([1-9][0-9]{3,}|25[0-9]|2[6-9][0-9]|[3-9][0-9][0-9])$",
-            "validationMessage": "The size must be in numbers and minimum allowed size is 250GB"
+              "allowedValues": [
+                  {
+                      "label": "Standard LRS",
+                      "value": "Standard_LRS"
+                  },
+                  {
+                      "label": "Premium LRS",
+                      "value": "Premium_LRS"
+                  }
+              ],
+              "required": true
           },
           "visible": "[equals(basics('niosModel'), 'IB-V2225')]"
+        },
+        {
+          "name": "vmDataDiskSize",
+          "type": "Microsoft.Common.Slider",
+          "min": 250,
+          "max": 32767,
+          "subLabel": "GiB",
+          "defaultValue": 250,
+          "label": "Data Disk size for TE-V2225",
+          "toolTip": "Select the size of Data Disk for TE-V2225. Minimum allowed size is 250GB",
+          "visible": "[equals(basics('niosModel'), 'IB-V2225')]",
+          "constraints":{
+            "required": true
+          }
         },
         {
           "name": "storageAccountForLogs",
@@ -474,6 +498,7 @@
       "subnet2Name": "[steps('vmSettings').niosNetwork.subnets.subnetMgmt.name]",
       "subnet2StartAddress": "[steps('vmSettings').niosNetwork.subnets.subnetMgmt.startAddress]",
 
+      "vmDataDiskType": "[steps('vmSettings').vmDataDiskType]",
       "vmDataDiskSize": "[int(steps('vmSettings').vmDataDiskSize)]",
 
       "newStorageAccountForLogsName": "[steps('vmSettings').storageAccountForLogs.name]",
