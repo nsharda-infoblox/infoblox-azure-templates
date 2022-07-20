@@ -395,6 +395,20 @@
                   }
                 }
               ],
+      "dataDiskParams": {
+          "location": {
+            "value": "[parameters('location')]"
+          },
+          "dataDiskName": {
+            "value": "[variables('dataDiskName')]"
+          },
+          "vmDataDiskType": {
+            "value": "[parameters('vmDataDiskType')]"
+          },
+          "vmDataDiskSize": {
+            "value": "[int(parameters('vmDataDiskSize'))]"
+          }
+        },
               
     "storageAccountForLogsName": "[if(parameters('storageAccountForLogsNeedFix'), variables('storageAccountForLogsNameNeedFix-true'), variables('storageAccountForLogsNameNeedFix-false'))]",
     "storageAccountForLogsNameNeedFix-true":"[concat(parameters('newStorageAccountForLogsName'), 'logs')]",
@@ -665,20 +679,7 @@
           "contentVersion":"1.0.0.0",
           "uri": "[variables('dataDiskSetupURL')]"
         },
-        "parameters": {
-          "location": {
-            "value": "[parameters('location')]"
-          },
-          "dataDiskName": {
-            "value": "[variables('dataDiskName')]"
-          },
-          "vmDataDiskType": {
-            "value": "[parameters('vmDataDiskType')]"
-          },
-          "vmDataDiskSize": {
-            "value": "[int(parameters('vmDataDiskSize'))]"
-          }
-        }
+        "parameters": "[if(contains(variables('dataDiskNewOrNone'), 'new'), variables('dataDiskParams'), json('null') )]"
       }
     },
     {
