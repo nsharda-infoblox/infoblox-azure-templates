@@ -200,7 +200,8 @@
       "defaultValue": 250,
       "metadata": {
         "description":"Data Disk for VM for storage"
-      }
+      },
+      "minValue":250
     },
     "publicIPAddressName":{
       "type":"string",
