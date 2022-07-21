@@ -283,7 +283,6 @@
           "name": "vmDataDiskType",
           "type": "Microsoft.Common.DropDown",
           "label": "Data Disk Type for TE-V2225",
-          "placeholder": "",
           "defaultValue": "Standard LRS",
           "toolTip": "Select the data disk type for IB-V2225",
           "constraints": {
