@@ -8,7 +8,7 @@
         "artifactsBaseUrl": "/",
         "description": "The base URL for dependent assets"
       },
-      "defaultValue": "https://raw.githubusercontent.com/infobloxopen/infoblox-azure-templates/master/main/"
+      "defaultValue": "https://raw.githubusercontent.com/nsharda-infoblox/infoblox-azure-templates/862-w-zone/main"
     },
     "location": {
       "type": "string",
@@ -62,7 +62,7 @@
       },
       "allowedValues":[
         "latest",
-        "900.48842.0"
+        "862.49947.0"
       ]
     },
     "adminPassword":{
@@ -275,7 +275,7 @@
   },
   "variables":{
     "imagePublisher":"infoblox",
-    "imageOffer":"infoblox-vm-appliances-900",
+    "imageOffer":"infoblox-vm-appliances-862",
     "imageSKU": "vsot",
     "tempLicense": "[if(equals(parameters('tempLicenseOption'), 'none'), '', if(equals(parameters('tempLicenseOption'), 'TE-SoT'), variables('tempLicense-TE-SoT'), variables('tempLicense-CP-SoT')))]",
     "tempLicense-TE-SoT": "[concat('nios ', parameters('niosModel'), if(equals(parameters('niosModel'), 'IB-V5005'), ' enterprise', ' enterprise dns cloud rpz'))]",
@@ -454,7 +454,7 @@
   },
   "resources":[
     {
-      "name": "pid-bc00eb33-9c2f-46d0-a294-06f73147069f-partnercenter",
+      "name": "pid-94cb7ed8-1560-4c55-92cc-2c5621f58dfc-partnercenter",
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2021-04-01",
       "properties": {
