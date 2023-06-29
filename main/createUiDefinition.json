@@ -5,6 +5,33 @@
   "parameters": {
     "basics": [
       {
+        "name": "Zone",
+        "type": "Microsoft.Common.DropDown",
+        "defaultValue": "",
+        "label": "Availability Zone",
+        "constraints": {
+          "allowedValues": [
+            {
+              "label": "None",
+              "value": ""
+            },
+            {
+              "label": "Zone 1",
+              "value": "1"
+            },
+            {
+              "label": "Zone 2",
+              "value": "2"
+            },
+            {
+              "label": "Zone 3",
+              "value": "3"
+            }
+          ]
+        },
+        "visible": true
+      },
+      {
         "name": "niosModel",
         "type": "Microsoft.Common.DropDown",
         "label": "NIOS model",
