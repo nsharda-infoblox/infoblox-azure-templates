@@ -22,7 +22,7 @@
       "name": "[parameters('publicIPAddressName')]",
       "location": "[parameters('location')]",
       "sku": {
-        "name" : "Standard"
+        "name" : "Basic"
       },
       "properties": {
         "publicIPAllocationMethod": "[parameters('publicIPAddressType')]",
