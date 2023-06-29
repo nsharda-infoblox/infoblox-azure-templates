@@ -21,9 +21,9 @@
       "type": "Microsoft.Network/publicIPAddresses",
       "name": "[parameters('publicIPAddressName')]",
       "location": "[parameters('location')]",
-      "zones": [
-        "1"
-      ],
+      "sku": {
+        "name" : "Standard"
+      },
       "properties": {
         "publicIPAllocationMethod": "[parameters('publicIPAddressType')]",
         "dnsSettings": {
