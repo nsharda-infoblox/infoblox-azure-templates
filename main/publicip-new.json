@@ -14,6 +14,9 @@
     "dnsPrefix": {
       "type": "string"
     },
+    "zone": {
+      "type": "string"
+    }
   },
   "resources": [
     {
@@ -25,7 +28,7 @@
         "name": "Standard"
       },
       "zones": [
-        "1"
+        "[parameters('zone')]"
       ],
       "properties": {
         "publicIPAllocationMethod": "Static",

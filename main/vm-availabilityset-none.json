@@ -5,6 +5,9 @@
     "location": {
       "type": "string"
     },
+    "zone": {
+      "type": "string"
+    },
     "vmName": {
       "type": "string"
     },
@@ -52,7 +55,7 @@
       "name":"[parameters('vmName')]",
       "location": "[parameters('location')]",
       "zones": [
-        "1"
+        "[parameters('zone')]"
       ],
       "plan": "[parameters('plan')]",
       "properties":"[if(equals(parameters('is_avset'), 'false'), variables('properties_default'), union(variables('properties_default'),variables('property_avset')))]"

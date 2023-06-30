@@ -17,6 +17,13 @@
         "description": "Location of resources."
       }
     },
+    "zone": {
+      "type": "string",
+      "defaultValue": "",
+      "metadata": {
+        "description": "Availability Zone for Virtual Machine"
+      }
+    },
     "vmName":{
       "type":"string",
       "defaultValue":"CSR",
@@ -333,6 +340,9 @@
       },
       "dnsPrefix":{
         "value":"[parameters('publicIPDnsName')]"
+      },
+      "zone": {
+        "value": "[parameters('zone')]"
       }
     },
 
@@ -713,6 +723,9 @@
           },
           "location": {
             "value": "[parameters('location')]"
+          },
+          "zone": {
+            "value": "[parameters('zone')]"
           },
           "plan": {
             "value" : {
