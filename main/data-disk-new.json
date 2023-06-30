@@ -13,6 +13,9 @@
         },
         "vmDataDiskSize": {
             "type": "int"
+        },
+        "zone": {
+            "type": "string"
         }
 
     },
@@ -22,6 +25,9 @@
             "apiVersion": "2021-12-01",
             "name": "[parameters('dataDiskName')]",
             "location": "[parameters('location')]",
+            "zones": [
+                "[parameters('zone')]"
+            ],
             "sku": {
                 "name": "[parameters('vmDataDiskType')]"
             },

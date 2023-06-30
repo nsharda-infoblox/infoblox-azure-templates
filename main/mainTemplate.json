@@ -405,6 +405,9 @@
           "location": {
             "value": "[parameters('location')]"
           },
+          "zone": {
+            "value": "[parameters('zone')]"
+          },
           "dataDiskName": {
             "value": "[variables('dataDiskName')]"
           },
