@@ -69,7 +69,7 @@
       },
       "allowedValues":[
         "latest",
-        "862.49947.0"
+        "863.51135.0"
       ]
     },
     "adminPassword":{
@@ -282,7 +282,7 @@
   },
   "variables":{
     "imagePublisher":"infoblox",
-    "imageOffer":"infoblox-vm-appliances-862",
+    "imageOffer":"infoblox-vm-appliances-863",
     "imageSKU": "vsot",
     "tempLicense": "[if(equals(parameters('tempLicenseOption'), 'none'), '', if(equals(parameters('tempLicenseOption'), 'TE-SoT'), variables('tempLicense-TE-SoT'), variables('tempLicense-CP-SoT')))]",
     "tempLicense-TE-SoT": "[concat('nios ', parameters('niosModel'), if(equals(parameters('niosModel'), 'IB-V5005'), ' enterprise', ' enterprise dns cloud rpz'))]",
