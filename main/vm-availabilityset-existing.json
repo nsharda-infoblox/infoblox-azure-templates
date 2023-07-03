@@ -54,9 +54,7 @@
       "type":"Microsoft.Compute/virtualMachines",
       "name":"[parameters('vmName')]",
       "location": "[parameters('location')]",
-      "zones": [
-        "[parameters('zone')]"
-      ],
+      "zones": "[if(empty(parameters('zone')), json('[]'), array(parameters('zone')))]",
       "plan": "[parameters('plan')]",
       "properties":"[if(equals(parameters('is_avset'), 'false'), variables('properties_default'), union(variables('properties_default'),variables('property_avset')))]"
     }
