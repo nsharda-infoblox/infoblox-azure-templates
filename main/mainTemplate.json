@@ -326,7 +326,6 @@
     "publicIpResourceId": "[if(equals(parameters('publicIPNewOrExistingOrNone'), 'none'), '', if(equals(parameters('publicIPNewOrExistingOrNone'), 'new'), variables('publicIp-new'), variables('publicIp-existing')))]",
     "publicIp-new": "[resourceId('Microsoft.Network/publicIPAddresses',parameters('publicIPAddressName'))]",
     "publicIp-existing": "[resourceId(parameters('publicIPExistingRGName'),concat('Microsoft.Network','/','publicIPAddresses'),parameters('publicIPAddressName'))]",
-    "publicIPAddressType":"Dynamic",
     "publicIPSetupURL":"[concat(parameters('artifactsBaseUrl'),'/publicip-',parameters('publicIPNewOrExistingOrNone'),'.json')]",
     "publicIPNewParams":{
       "location": {
@@ -334,9 +333,6 @@
       },
       "publicIPAddressName":{
         "value":"[parameters('publicIPAddressName')]"
-      },
-      "publicIPAddressType":{
-        "value":"[variables('publicIPAddressType')]"
       },
       "dnsPrefix":{
         "value":"[parameters('publicIPDnsName')]"

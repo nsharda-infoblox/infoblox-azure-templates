@@ -8,9 +8,6 @@
     "publicIPAddressName": {
       "type": "string"
     },
-    "publicIPAddressType": {
-      "type": "string"
-    },
     "dnsPrefix": {
       "type": "string"
     },
@@ -27,9 +24,7 @@
       "sku": {
         "name": "Standard"
       },
-      "zones": [
-        "[parameters('zone')]"
-      ],
+      "zones": "[if(empty(parameters('zone')), '[]', array(parameters('zone')))]",
       "properties": {
         "publicIPAllocationMethod": "Static",
         "dnsSettings": {
