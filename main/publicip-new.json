@@ -15,11 +15,6 @@
       "type": "string"
     }
   },
-  "variables":{
-    "zones" : [
-      "[parameters('zone')]"
-    ]
-  },
   "resources": [
     {
       "apiVersion": "2021-04-01",
@@ -29,7 +24,7 @@
       "sku": {
         "name": "Standard"
       },
-      "zones": "[if(empty(parameters('zone')), json('[]'), variables('zones'))]",
+      "zones": "[if(empty(parameters('zone')), json('[]'), array(parameters('zone')))]",
       "properties": {
         "publicIPAllocationMethod": "Static",
         "dnsSettings": {
