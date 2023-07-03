@@ -46,7 +46,10 @@
     },
     "property_avset":{
       "availabilitySet":"[parameters('availabilitySet')]"
-    }
+    },
+    "zones" : [
+      "[parameters('zone')]"
+    ]
   },
   "resources": [
     {
@@ -54,7 +57,7 @@
       "type":"Microsoft.Compute/virtualMachines",
       "name":"[parameters('vmName')]",
       "location": "[parameters('location')]",
-      "zones": "[if(empty(parameters('zone')), '[]', array(parameters('zone')))]",
+      "zones": "[if(empty(parameters('zone')), json('[]'), variables('zones'))]",
       "plan": "[parameters('plan')]",
       "properties":"[if(equals(parameters('is_avset'), 'false'), variables('properties_default'), union(variables('properties_default'),variables('property_avset')))]"
     }
