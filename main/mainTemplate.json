@@ -8,7 +8,7 @@
         "artifactsBaseUrl": "/",
         "description": "The base URL for dependent assets"
       },
-      "defaultValue": "https://raw.githubusercontent.com/nsharda-infoblox/infoblox-azure-templates/862-w-zone/main"
+      "defaultValue": "https://raw.githubusercontent.com/infobloxopen/infoblox-azure-templates/master/main/"
     },
     "location": {
       "type": "string",
@@ -466,7 +466,7 @@
   },
   "resources":[
     {
-      "name": "pid-94cb7ed8-1560-4c55-92cc-2c5621f58dfc-partnercenter",
+      "name": "pid-2be14079-e0be-4176-afe8-94b39bd49f26-partnercenter",
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2021-04-01",
       "properties": {
