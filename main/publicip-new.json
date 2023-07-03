@@ -24,7 +24,6 @@
       "sku": {
         "name": "Standard"
       },
-      "zones": "[if(empty(parameters('zone')), json('[]'), array(parameters('zone')))]",
       "properties": {
         "publicIPAllocationMethod": "Static",
         "dnsSettings": {
