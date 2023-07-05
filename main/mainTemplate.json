@@ -452,9 +452,6 @@
       "location": {
         "value": "[parameters('location')]"
       },
-      "zone": {
-        "value": "[parameters('zone')]"
-      },
       "availabilitySetName":{
         "value":"[parameters('availabilitySetName')]"
       }
