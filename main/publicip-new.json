@@ -8,7 +8,13 @@
     "publicIPAddressName": {
       "type": "string"
     },
+    "publicIPAddressType":{
+        "type":"string"
+      },
     "dnsPrefix": {
+      "type": "string"
+    },
+    "publicIp-sku": {
       "type": "string"
     }
   },
@@ -19,10 +25,10 @@
       "name": "[parameters('publicIPAddressName')]",
       "location": "[parameters('location')]",
       "sku": {
-        "name": "Standard"
+        "name": "[parameters('publicIp-sku')]"
       },
       "properties": {
-        "publicIPAllocationMethod": "Static",
+        "publicIPAllocationMethod": "[parameters('publicIPAddressType')]",
         "dnsSettings": {
           "domainNameLabel": "[parameters('dnsPrefix')]"
         }
