@@ -9,11 +9,12 @@
         "type": "Microsoft.Common.DropDown",
         "defaultValue": "",
         "label": "Availability Zone",
+        "toolTip": "Select the Availability Zone for VM",
         "constraints": {
           "allowedValues": [
             {
               "label": "None",
-              "value": ""
+              "value": "0"
             },
             {
               "label": "Zone 1",

@@ -2,13 +2,13 @@
   "$schema":"https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion":"1.0.0.0",
   "parameters":{
-    "artifactsBaseUrl": {
+    "_artifactsLocation": {
       "type": "string",
-      "metadata": {
-        "artifactsBaseUrl": "/",
-        "description": "The base URL for dependent assets"
-      },
-      "defaultValue": "https://raw.githubusercontent.com/nsharda-infoblox/infoblox-azure-templates/862-w-zone/main/"
+      "defaultValue": "[deployment().properties.templateLink.uri]"
+    },
+    "_artifactsLocationSasToken": {
+      "type": "secureString",
+      "defaultValue": ""
     },
     "location": {
       "type": "string",
@@ -328,7 +328,7 @@
     "publicIp-existing": "[resourceId(parameters('publicIPExistingRGName'),concat('Microsoft.Network','/','publicIPAddresses'),parameters('publicIPAddressName'))]",
     "publicIPAddressType": "[if(empty(parameters('zone')), 'Dynamic', 'Static')]",
     "publicIp-sku": "[if(empty(parameters('zone')), 'Basic', 'Standard')]",
-    "publicIPSetupURL":"[concat(parameters('artifactsBaseUrl'),'/publicip-',parameters('publicIPNewOrExistingOrNone'),'.json')]",
+    "publicIPSetupURL":"[uri(parameters('_artifactsLocation'), concat('publicip-', parameters('publicIPNewOrExistingOrNone'), '.json', parameters('_artifactsLocationSasToken')))]",
     "publicIPNewParams":{
       "location": {
         "value": "[parameters('location')]"
@@ -347,11 +347,11 @@
       }
     },
 
-    "virtualNetworkSetupURL":"[concat(parameters('artifactsBaseUrl'),'/vnet-',parameters('vnetNewOrExisting'),'.json')]",
+    "virtualNetworkSetupURL":"[uri(parameters('_artifactsLocation'),concat('/vnet-',parameters('vnetNewOrExisting'), '.json', parameters('_artifactsLocationSasToken')))]",
     "nicPrimaryName": "[concat(parameters('vmName'),'-lan1')]",
     "nicSecondaryName": "[concat(parameters('vmName'),'-mgmt')]",
-    "nicPrimarySetupURL":"[concat(parameters('artifactsBaseUrl'),'/nic-pip',variables('publicIPExistingOrNone'),'.json')]",
-    "nicSecondarySetupURL":"[concat(parameters('artifactsBaseUrl'),'/nic-pipnone.json')]",
+    "nicPrimarySetupURL":"[uri(parameters('_artifactsLocation'), concat('nic-pip', variables('publicIPExistingOrNone'), '.json', parameters('_artifactsLocationSasToken')))]",
+    "nicSecondarySetupURL":"[uri(parameters('_artifactsLocation'), concat('nic-pipnone', '.json', parameters('_artifactsLocationSasToken')))]",
     "nicprimaryNoneParams":{
       "location": {
         "value": "[parameters('location')]"
@@ -392,7 +392,7 @@
 
     "dataDiskName": "[concat(parameters('vmName'),'-datadisk1')]",
     "dataDiskNewOrNone": "[if(equals(parameters('niosModel'), 'IB-V5005'), 'new', 'none')]",
-    "dataDiskSetupURL": "[concat(parameters('artifactsBaseUrl'),'/data-disk-',variables('dataDiskNewOrNone'),'.json')]",
+    "dataDiskSetupURL": "[uri(parameters('_artifactsLocation'), concat('data-disk-', variables('dataDiskNewOrNone'), '.json', parameters('_artifactsLocationSasToken')))]",
     "dataDiskArray": [
                 {
                   "lun": 0,
@@ -423,7 +423,7 @@
     "storageAccountForLogsName": "[if(parameters('storageAccountForLogsNeedFix'), variables('storageAccountForLogsNameNeedFix-true'), variables('storageAccountForLogsNameNeedFix-false'))]",
     "storageAccountForLogsNameNeedFix-true":"[concat(parameters('newStorageAccountForLogsName'), 'logs')]",
     "storageAccountForLogsNameNeedFix-false":"[parameters('newStorageAccountForLogsName')]",
-    "storageAccountForLogsSetupURL":"[concat(parameters('artifactsBaseUrl'),'/storageAccount-',parameters('storageAccountForLogsNewOrExisting'),'.json')]",
+    "storageAccountForLogsSetupURL":"[uri(parameters('_artifactsLocation'), concat('storageAccount-', parameters('storageAccountForLogsNewOrExisting'), '.json', parameters('_artifactsLocationSasToken')))]",
     "storageAccountForLogsNewParams":{
       "location": {
         "value": "[parameters('location')]"
@@ -456,7 +456,7 @@
         "value":"[parameters('availabilitySetName')]"
       }
     },
-    "availabilitySetSetupURL":"[concat(parameters('artifactsBaseUrl'),'/availabilityset-',variables('availabilitySetNewOrNone'),'.json')]",
+    "availabilitySetSetupURL":"[uri(parameters('_artifactsLocation'), concat('availabilityset-', variables('availabilitySetNewOrNone'), '.json', parameters('_artifactsLocationSasToken')))]",
     "sq":"'",
     "osProfile":{
       "computerName":"[parameters('vmName')]",
@@ -464,7 +464,7 @@
       "adminPassword":"[parameters('adminPassword')]",
       "customData": "[variables('customData')]"
     },
-    "virtualMachineSetURL":"[concat(parameters('artifactsBaseUrl'),'/vm-availabilityset-', variables('availabilitySetExistingOrNone'),'.json')]"
+    "virtualMachineSetURL":"[uri(parameters('_artifactsLocation'), concat('vm-availabilityset-', variables('availabilitySetExistingOrNone'), '.json', parameters('_artifactsLocationSasToken')))]"
   },
   "resources":[
     {
@@ -494,7 +494,7 @@
       }
     },
     {
-      "apiVersion": "2021-04-01",
+      "apiVersion": "2022-07-01",
       "type": "Microsoft.Network/networkSecurityGroups",
       "name": "[variables('nsgName')]",
       "location": "[parameters('location')]",
